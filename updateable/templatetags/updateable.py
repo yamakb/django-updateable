@@ -19,7 +19,7 @@ class UpdateableNode(Node):
 
         id = self.get_id(request, updateable_count)
         contents = u''.join(n.render(context) for n in self.nodelist)
-        hash = md5(contents).hexdigest()
+        hash = md5(b"%b" % (contents.encode("utf-8"))).hexdigest()
         rcontext = {
             'id': id,
             'contents': contents,
