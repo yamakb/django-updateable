@@ -37,7 +37,7 @@ class UpdateableNode(Node):
         if not request:
             id = updateable_count
         else:
-            id = md5('%d-%s' % (updateable_count, request.path)).encode('utf-8').hexdigest()
+            id = md5('%d-%s' % (updateable_count.encode('utf-8'), request.path.encode('utf-8'))).hexdigest()
         return id
 
 
