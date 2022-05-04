@@ -2,9 +2,9 @@
 
 from django.http import HttpResponse
 from updateable import settings
+from django.utils.deprecation import MiddlewareMixin
 
-
-class UpdateableMiddleware(object):
+class UpdateableMiddleware(MiddlewareMixin):
 
     def process_request(self, request):
         updateable = bool(request.GET.get(settings.UPDATEABLE_GET_VARIABLE))
