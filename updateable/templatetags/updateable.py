@@ -37,7 +37,7 @@ class UpdateableNode(Node):
         if not request:
             id = updateable_count
         else:
-            id = md5(b"%b-%b" % str(updateable_count).encode('utf-8'), request.path.encode('utf-8').hexdigest()
+            id = md5(b"%b-%b" % (str(updateable_count).encode('utf-8'), request.path.encode('utf-8'))).hexdigest()
         return id
 
 
@@ -54,4 +54,3 @@ def updateable(parser, token):
     nodelist = parser.parse(('endupdateable',))
     parser.delete_first_token()
     return UpdateableNode(element, nodelist)
-
